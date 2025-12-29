@@ -2,18 +2,16 @@ name: Build CloudStream cs3
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout master
+      - name: Checkout source repo (REAL Gradle project)
         uses: actions/checkout@v4
         with:
+          repository: Kraptor123/cs-kraptor
           ref: master
 
       - name: Set up JDK 23
