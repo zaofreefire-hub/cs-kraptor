@@ -144,5 +144,4 @@ Teşekkür ederiz.
   </tr>
 </table>
  </div>
-test actions
 <!-- trigger github actions -->
