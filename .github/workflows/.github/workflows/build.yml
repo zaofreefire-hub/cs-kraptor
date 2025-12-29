@@ -1,0 +1,34 @@
+name: Build CloudStream Providers
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+
+      - name: Build cs3
+        run: ./gradlew buildCs3
+
+      - name: Upload cs3 artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cs3
+          path: build/*.cs3
