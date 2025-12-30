@@ -8,32 +8,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout الريبو الأصلي الذي فيه Gradle
-      - name: Checkout real CloudStream source
+      - name: Checkout CloudStream source
         uses: actions/checkout@v4
         with:
           repository: Kraptor123/cs-kraptor
           ref: master
           path: cloudstream
 
-      # 2️⃣ Java
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: 17
 
-      # 3️⃣ صلاحيات gradlew
-      - name: Grant execute permission
+      - name: Grant gradlew permission
         working-directory: cloudstream
         run: chmod +x gradlew
 
-      # 4️⃣ Build
       - name: Build cs3
         working-directory: cloudstream
         run: ./gradlew buildCs3
 
-      # 5️⃣ Artifact
       - name: Upload cs3 artifact
         uses: actions/upload-artifact@v4
         with:
